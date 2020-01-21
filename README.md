@@ -1,2 +1,0 @@
-# PracticeBot
-Practice FRC Bot
