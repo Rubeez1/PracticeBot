@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems;  // Make sure to open Robot, not PracticeBot
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;

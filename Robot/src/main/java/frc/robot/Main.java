@@ -7,23 +7,70 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.sensors.Camera;
+import frc.robot.sensors.Gyro;
+// import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Drivetrain;
+// import frc.robot.subsystems.Intake;
+// import frc.robot.subsystems.Shooter;
+// import frc.robot.subsystems.WheelOfFortune;
 
-/**
- * Do NOT add any static variables to this class, or any initialization at all.
- * Unless you know what you are doing, do not modify this file except to
- * change the parameter class to the startRobot call.
+/** 
+ * This class is run automatically, and dictates what functions are run during each of these stages.
+ * @author dri
  */
-public final class Main {
-  private Main() {
-  }
+public class Robot extends TimedRobot {
+    public static Camera camera = Camera.getInstance();
+   //  public static Climber climber = Climber.getInstance();
+    public static Drivetrain drivetrain = Drivetrain.getInstance();
+    public static Gyro gyro = Gyro.getInstance();
+  //   public static Intake intake = Intake.getInstance();
+   //  public static Shooter shooter = Shooter.getInstance();
+    // public static WheelOfFortune wheel = WheelOfFortune.getInstance();
+    
+    /**
+     * This function is run when the robot is first started up and should be used
+     * for any initialization code.
+     */
+    @Override
+    public void robotInit() {
+    }
 
-  /**
-   * Main initialization function. Do not perform any initialization here.
-   *
-   * <p>If you change your main robot class, change the parameter type.
-   */
-  public static void main(String... args) {
-    RobotBase.startRobot(Robot::new);
-  }
+    @Override
+    public void robotPeriodic() {
+        camera.update();
+    }
+
+    @Override
+    public void autonomousInit() {
+    }
+
+    @Override
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+    }
+
+    @Override
+    public void teleopInit() {
+        OI.init();
+    }
+
+    @Override
+    public void teleopPeriodic() {
+        OI.update();
+        Scheduler.getInstance().run();
+    }
+
+    @Override
+    public void testInit() {
+        OI.init();
+    }
+
+    @Override
+    public void testPeriodic() {
+        OI.update();
+        Scheduler.getInstance().run();
+    }
 }
